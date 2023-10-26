@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.miguelalvrub.superheroes"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.miguelalvrub.superheroes"
