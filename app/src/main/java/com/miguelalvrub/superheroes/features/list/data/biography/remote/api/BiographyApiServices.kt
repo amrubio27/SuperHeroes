@@ -6,6 +6,6 @@ import retrofit2.http.Path
 
 interface BiographyApiServices {
     @GET("biography/{heroId}.json")
-    fun getBiography(@Path("heroId") heroId: Int): Response<BiographyApiModel>
+    suspend fun getBiography(@Path("heroId") heroId: Int): Response<BiographyApiModel>
 
 }
