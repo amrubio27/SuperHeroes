@@ -6,5 +6,5 @@ import retrofit2.http.Path
 
 interface WorkApiServices {
     @GET("work/{heroId}.json")
-    fun getWork(@Path("heroId") heroId: Int): Response<WorkApiModel>
+    suspend fun getWork(@Path("heroId") heroId: Int): Response<WorkApiModel>
 }

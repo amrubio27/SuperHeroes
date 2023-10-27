@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 class SuperHeroListViewModel(
     private val getSuperHeroesFeedUseCase: GetSuperHeroesFeedUseCase
 ) : ViewModel() {
+
     private val _uiState = MutableLiveData<UiState>()
     val uiState: LiveData<UiState> = _uiState
 
