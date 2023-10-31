@@ -2,23 +2,13 @@ package com.miguelalvrub.superheroes.features.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.miguelalvrub.superheroes.R
 import com.miguelalvrub.superheroes.features.list.domain.GetSuperHeroesFeedUseCase
+import com.miguelalvrub.superheroes.features.list.domain.Models
 
-class SuperHeroAdapter() : RecyclerView.Adapter<SuperHeroViewHolder>() {
-
-    private val dataList: MutableList<GetSuperHeroesFeedUseCase.Output> = mutableListOf()
-
-    fun setData(superheroes: List<GetSuperHeroesFeedUseCase.Output>) {
-        dataList.clear()
-        addDataList(superheroes)
-    }
-
-    fun addDataList(superheroes: List<GetSuperHeroesFeedUseCase.Output>) {
-        dataList.addAll(superheroes)
-        notifyDataSetChanged()
-    }
+class SuperHeroAdapter() : ListAdapter<GetSuperHeroesFeedUseCase.Output,SuperHeroViewHolder>(SuperHeroDiffUtil()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SuperHeroViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -26,9 +16,9 @@ class SuperHeroAdapter() : RecyclerView.Adapter<SuperHeroViewHolder>() {
         return SuperHeroViewHolder(view)
     }
 
-    override fun getItemCount(): Int = dataList.size
+    override fun getItemCount(): Int = currentList.size
 
     override fun onBindViewHolder(holder: SuperHeroViewHolder, position: Int) {
-        holder.bind(dataList[position])
+        holder.bind(currentList[position])
     }
 }

@@ -53,7 +53,7 @@ class SuperHeroListActivity : AppCompatActivity() {
         val observer = Observer<SuperHeroListViewModel.UiState> {
             //val list = it.superHero
             it.superHero?.apply {
-                superheroAdapter.setData(this)
+                superheroAdapter.submitList(this)
             }
             //Log.d("@dev", "lista: $list")
         }
