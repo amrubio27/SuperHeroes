@@ -1,4 +1,4 @@
-package com.miguelalvrub.superheroes.features.list
+package com.miguelalvrub.superheroes.features.list.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,10 +8,12 @@ import com.miguelalvrub.superheroes.databinding.ActivityMainBinding
 import com.miguelalvrub.superheroes.features.list.data.biography.BiographyDataRepository
 import com.miguelalvrub.superheroes.features.list.data.biography.remote.BiographyRemoteDataSource
 import com.miguelalvrub.superheroes.features.list.data.superhero.SuperHeroDataRepository
+import com.miguelalvrub.superheroes.features.list.data.superhero.local.XmlSuperHeroLocalDataSource
 import com.miguelalvrub.superheroes.features.list.data.superhero.remote.SuperHeroRemoteDataSource
 import com.miguelalvrub.superheroes.features.list.data.work.WorkDataRepository
 import com.miguelalvrub.superheroes.features.list.data.work.remote.WorkRemoteDataSource
 import com.miguelalvrub.superheroes.features.list.domain.GetSuperHeroesFeedUseCase
+import com.miguelalvrub.superheroes.features.list.presentation.adapter.SuperHeroAdapter
 
 class SuperHeroListActivity : AppCompatActivity() {
 
@@ -19,27 +21,27 @@ class SuperHeroListActivity : AppCompatActivity() {
 
     private val superheroAdapter = SuperHeroAdapter()
 
-    private val superHeroRepository = GetSuperHeroesFeedUseCase(
-        SuperHeroDataRepository(
-            SuperHeroRemoteDataSource()
-        ),
-        BiographyDataRepository(
-            BiographyRemoteDataSource()
-        ),
-        WorkDataRepository(
-            WorkRemoteDataSource()
-        )
-    )
-
 
     val viewModel: SuperHeroListViewModel by lazy {
         SuperHeroListViewModel(
-            superHeroRepository
+            GetSuperHeroesFeedUseCase(
+                SuperHeroDataRepository(
+                    XmlSuperHeroLocalDataSource(this),
+                    SuperHeroRemoteDataSource()
+                ),
+                BiographyDataRepository(
+                    BiographyRemoteDataSource()
+                ),
+                WorkDataRepository(
+                    WorkRemoteDataSource()
+                )
+            )
         )
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setupBinding()
         setupView()
         setupObservers()
@@ -51,11 +53,9 @@ class SuperHeroListActivity : AppCompatActivity() {
 
     private fun setupObservers() {
         val observer = Observer<SuperHeroListViewModel.UiState> {
-            //val list = it.superHero
             it.superHero?.apply {
                 superheroAdapter.submitList(this)
             }
-            //Log.d("@dev", "lista: $list")
         }
         viewModel.uiState.observe(this, observer)
     }

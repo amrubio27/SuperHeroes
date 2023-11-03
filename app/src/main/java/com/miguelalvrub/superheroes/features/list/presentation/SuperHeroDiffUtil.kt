@@ -1,4 +1,4 @@
-package com.miguelalvrub.superheroes.features.list
+package com.miguelalvrub.superheroes.features.list.presentation
 
 import androidx.recyclerview.widget.DiffUtil
 import com.miguelalvrub.superheroes.features.list.domain.GetSuperHeroesFeedUseCase

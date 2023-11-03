@@ -1,4 +1,4 @@
-package com.miguelalvrub.superheroes.features.list
+package com.miguelalvrub.superheroes.features.list.presentation
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -1,14 +1,15 @@
-package com.miguelalvrub.superheroes.features.list
+package com.miguelalvrub.superheroes.features.list.presentation.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.miguelalvrub.superheroes.R
+import com.miguelalvrub.superheroes.features.list.presentation.SuperHeroDiffUtil
 import com.miguelalvrub.superheroes.features.list.domain.GetSuperHeroesFeedUseCase
-import com.miguelalvrub.superheroes.features.list.domain.Models
 
-class SuperHeroAdapter() : ListAdapter<GetSuperHeroesFeedUseCase.Output,SuperHeroViewHolder>(SuperHeroDiffUtil()) {
+class SuperHeroAdapter() : ListAdapter<GetSuperHeroesFeedUseCase.Output, SuperHeroViewHolder>(
+    SuperHeroDiffUtil()
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SuperHeroViewHolder {
         val view = LayoutInflater.from(parent.context)

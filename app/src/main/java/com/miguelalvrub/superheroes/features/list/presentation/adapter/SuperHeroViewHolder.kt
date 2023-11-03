@@ -1,4 +1,4 @@
-package com.miguelalvrub.superheroes.features.list
+package com.miguelalvrub.superheroes.features.list.presentation.adapter
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

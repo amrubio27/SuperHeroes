@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
-        tools:context=".features.list.SuperHeroListActivity">
+        tools:context=".features.list.presentation.SuperHeroListActivity">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/imagePreview"
