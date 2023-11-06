@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.miguelalvrub.superheroes.databinding.ActivityMainBinding
+import com.miguelalvrub.superheroes.features.list.data.ApiClient
 import com.miguelalvrub.superheroes.features.list.data.biography.BiographyDataRepository
 import com.miguelalvrub.superheroes.features.list.data.biography.remote.BiographyRemoteDataSource
 import com.miguelalvrub.superheroes.features.list.data.superhero.SuperHeroDataRepository
@@ -27,13 +28,13 @@ class SuperHeroListActivity : AppCompatActivity() {
             GetSuperHeroesFeedUseCase(
                 SuperHeroDataRepository(
                     XmlSuperHeroLocalDataSource(this),
-                    SuperHeroRemoteDataSource()
+                    SuperHeroRemoteDataSource(apiClient = ApiClient())
                 ),
                 BiographyDataRepository(
-                    BiographyRemoteDataSource()
+                    BiographyRemoteDataSource(apiClient = ApiClient())
                 ),
                 WorkDataRepository(
-                    WorkRemoteDataSource()
+                    WorkRemoteDataSource(apiClient = ApiClient())
                 )
             )
         )
